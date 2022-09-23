@@ -11,6 +11,7 @@ public class Constants {
 	public static final String CODE_PRODUCT_FIXED_TERM_SAVING_ACCOUNT ="0003";
 	public static final String CODE_PRODUCT_CREDIT ="0004";
 	public static final String CODE_PRODUCT_CREDIT_CARD ="0005";
+	public static final String CODE_PRODUCT_CURRENT_ACCOUNT_WITHOUT_MAINTENANCE_COMMISSION ="0006";
 	
 	
 }

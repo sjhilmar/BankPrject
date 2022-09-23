@@ -119,22 +119,22 @@ public class ClientProductService implements IClientProductService {
 			}
 			//cliente empresa vip
 			if (clientProductModel.getClientType().equalsIgnoreCase(Constants.CLIENT_TYPE_PYME)) {
-				if (clientProductModel.getCodeProduct().equalsIgnoreCase(Constants.CODE_PRODUCT_CURRENT_ACCOUNT)) {
-					Flux<ClientProduct> clientProducts = clientProductRepository.findAll()
-							.filter(t -> t.getClientId().equalsIgnoreCase(clientProductModel.getClientId()))
-							.filter(t -> t.getCodeProduct().equalsIgnoreCase(clientProductModel.getCodeProduct()));
-					return clientProducts.collectList().flatMap(t -> {
-						if (t.isEmpty()) {
-							return clientProductRepository.save(clientProductModel);
-						} else {
-
-							return Mono.error(new Throwable("Customer already has this product"));
-						}
-					});
-
-				} else {
-					message = "No se puedo registrar, el cliente no puede tener el producto.";
-				}
+								
+					if (clientProductModel.getCodeProduct().equals(Constants.CODE_PRODUCT_CURRENT_ACCOUNT_WITHOUT_MAINTENANCE_COMMISSION)) {
+						Flux<ClientProduct> value = clientProductRepository.findAllByClientId(clientProductModel.getClientId())
+								.filter(t ->t.getCodeProduct().equalsIgnoreCase(Constants.CODE_PRODUCT_CREDIT_CARD))
+								.switchIfEmpty(Mono.error(new Throwable("Business client should have a credit card")));
+						
+						return value.collectList()
+								.flatMap(t -> clientProductRepository.save(clientProductModel));	
+					}else {
+						return Mono.just(clientProductModel)
+								.filter(t -> !Objects.equals(t.getCodeProduct(), Constants.CODE_PRODUCT_SAVINGS_ACCOUNT))
+								.filter(t -> !Objects.equals(t.getCodeProduct(), Constants.CODE_PRODUCT_FIXED_TERM_SAVING_ACCOUNT))
+								.switchIfEmpty(Mono.error(new Throwable("Business Client can't have  a saving account or fixed term saving account")))
+								.flatMap(clientProductRepository::save);
+					}
+						
 			}
 
 		} catch (Exception e) {
