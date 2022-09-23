@@ -71,6 +71,7 @@ public class MovementController {
 	 * @return
 	 * @throws Exception
 	 */
+	@Operation(summary = "Get a movement by id")
 	@GetMapping(path = { "{id}" }, produces = { "application/json" })
 	public ResponseEntity<Mono<Movement>> getById(@PathVariable("id") String id) throws Exception {
 		Mono<Movement> response = movementService.findById(id);
@@ -87,6 +88,7 @@ public class MovementController {
 	 * @throws Exception
 	 */
 	@PostMapping(path = "/create")
+	@Operation(summary = "create a movement")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Mono<Movement> create(@RequestBody Movement movement) throws Exception {
 

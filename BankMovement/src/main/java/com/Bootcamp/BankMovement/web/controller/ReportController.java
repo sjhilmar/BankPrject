@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Bootcamp.BankMovement.domain.ClientProduct;
 import com.Bootcamp.BankMovement.service.IClientProductService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
@@ -22,13 +23,16 @@ public class ReportController {
 	@Autowired
 	private final IClientProductService clientProductService;
 	
-	@GetMapping(path = {"report/findAllbyClientId/{clientId}"}, produces = {"application/json"})
+	@Operation(summary = "get list of a client products")
+	@GetMapping(path = {"clientProduct/findAllbyClientId/{clientId}"}, produces = {"application/json"})
 	public Flux<ClientProduct>findAllByClientId(@PathVariable("clientId") String clientId) throws Exception{
 		log.info("findAllByClientId");
 		log.debug(clientId);
 		return clientProductService.findAllByClientId(clientId);
 	}
-	@GetMapping(path = {"report/findAllbyCodeProduct/{codeProduct}"}, produces = {"application/json"})
+	
+	@Operation(summary = "get list of client products by Product code")
+	@GetMapping(path = {"clientProduct/findAllbyCodeProduct/{codeProduct}"}, produces = {"application/json"})
 	public Flux<ClientProduct>findAllByCodeProduct(@PathVariable("codeProduct") String codeProduct) throws Exception{
 		log.info("findAllByCodeProduct");
 		log.debug(codeProduct);

@@ -61,11 +61,20 @@ public class ClientProductController {
 		return clientProductService.update(id, clientProductModel);
 	}
 
+	
 	@DeleteMapping({ "{id}" })
 	public void deleteById(@PathVariable("id") String id) throws Exception {
 		clientProductService.deleteById(id).subscribe();
 		log.info("deleteById" + "OK");
 		log.debug(id);
 	}
-
+	
+	@Operation(summary = "get a client product by account number ")
+	@GetMapping(path = { "findByAccountNumber/{accountNumber}" }, produces = { "application/json" })
+	public ResponseEntity<Mono<ClientProduct>> findByAccountNumber(@PathVariable("accountNumber") String accountNumber) throws Exception {
+		Mono<ClientProduct> response = clientProductService.findByAccountNumber(accountNumber);
+		log.info("getById" + "OK");
+		log.debug(accountNumber);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 }
