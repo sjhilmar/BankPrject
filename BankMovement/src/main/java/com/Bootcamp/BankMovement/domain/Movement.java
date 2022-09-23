@@ -1,6 +1,5 @@
 package com.Bootcamp.BankMovement.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -25,7 +24,7 @@ public class Movement {
 
     private String type;
 
-    private BigDecimal amount;
+    private Double amount;
 
     private String clientProductId;
 

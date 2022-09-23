@@ -1,5 +1,4 @@
 package com.Bootcamp.BankMovement.domain;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,7 +23,7 @@ public class ClientProduct {
     @Column(unique=true)
     private String accountNumber;
 
-    private BigDecimal balance;
+    private Double balance;
 
     private Date openDate;
 
