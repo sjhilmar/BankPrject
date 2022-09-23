@@ -168,4 +168,10 @@ public class ClientProductService implements IClientProductService {
 				.switchIfEmpty(Flux.error(() -> new Throwable("Data not Found")));
 	}
 
+	@Override
+	public Mono<ClientProduct> findByAccountNumber(String accountNumber) throws Exception {
+		return clientProductRepository.findByAccountNumber(accountNumber)
+				.switchIfEmpty(Mono.error(new Throwable("Data not found")));
+	}
+
 }

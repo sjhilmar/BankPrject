@@ -27,5 +27,9 @@ public class Movement {
     private Double amount;
 
     private String clientProductId;
+    
+    private String reason;
+    
+    private String destinedNumberAccount;
 
 }

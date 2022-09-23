@@ -21,5 +21,6 @@ public interface IClientProductService {
 	
     Flux<ClientProduct> findAllByCodeProduct(String codeProduct) throws Exception;
     
+    Mono<ClientProduct> findByAccountNumber(String accountNumber) throws Exception;
     
 }

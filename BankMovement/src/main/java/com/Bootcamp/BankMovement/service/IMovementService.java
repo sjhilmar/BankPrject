@@ -19,4 +19,6 @@ public interface IMovementService {
 	Mono<Movement> update(String id, Movement movement) throws Exception;
 
 	Mono<Void> deleteById(String id) throws Exception;
+	
+	
 }
