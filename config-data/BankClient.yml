@@ -1,0 +1,20 @@
+server:
+  #port: ${PORT:${SERVER_PORT:0}}
+  port: 53000
+  
+spring:
+ data:
+   mongodb:
+       database: bankclient
+       #uri: mongodb+srv://williammq:testBC34@test.zoqpces.mongodb.net/?retryWrites=true&w=majority
+       uri: mongodb+srv://sa:zLDlfLIqbHKDwmZ7@javabootcamp.p1mwttm.mongodb.net/?retryWrites=true&w=majority
+       #uri: mongodb+srv://cpalacios:Everis041096@cluster0.0a5yuhy.mongodb.net/?retryWrites=true&w=majority
+          
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: BankMovement
+          uri: lb://BankMovement
+          predicates:
+            - Path=/BankMovement/**
+        - id: BankProduct
+          uri: lb://BankProduct
+          predicates:
+            - Path=/BankProduct/**      
+        - id: BankClient
+          uri: lb://BankClient
+          predicates:
+            - Path=/BankClient/** 
+        - id: bankwallet
+          uri: lb://bankwallet
+          predicates:
+            - Path=/bankwallet/**

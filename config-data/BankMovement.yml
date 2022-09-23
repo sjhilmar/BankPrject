@@ -1,0 +1,20 @@
+server:
+  port: 8087
+
+
+spring:
+ data:
+   mongodb:
+       database: bankmovement
+       uri: mongodb+srv://sa:zLDlfLIqbHKDwmZ7@javabootcamp.p1mwttm.mongodb.net/?retryWrites=true&w=majority
+       #uri: mongodb+srv://root:XR1dZNfCu7G7vbYL@cluster0.rc9rpyb.mongodb.net/?retryWrites=true&w=majority
+       #uri: mongodb://localhost:27017
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

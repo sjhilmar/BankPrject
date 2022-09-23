@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: BankMovement
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8090
