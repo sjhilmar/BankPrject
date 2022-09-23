@@ -22,6 +22,6 @@ public class CreditDebts {
 	private String clientProductId;
 	private Date dateDebts;
 	private Double amountDebts;
-//	private List<ClientProduct> clientProduct;
+
 		
 }
