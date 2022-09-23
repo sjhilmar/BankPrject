@@ -36,8 +36,8 @@ public class ClientProductService implements IClientProductService {
 	@Override
 	public Mono<ClientProduct> create(ClientProduct clientProductModel) throws Exception {
 
-		String message = "";
-		// Cliente PERONA
+	
+	
 		try {
 
 			if (clientProductModel.getClientType().equalsIgnoreCase(Constants.CLIENT_TYPE_PERSON)) {
@@ -138,7 +138,7 @@ public class ClientProductService implements IClientProductService {
 			}
 
 		} catch (Exception e) {
-			throw new Exception(message == "" ? "No se puedo registrar" : message);
+			throw new Exception(e);
 		}
 		return Mono.just(clientProductModel);
 
